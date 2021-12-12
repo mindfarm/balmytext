@@ -44,8 +44,9 @@ func main() {
 	mux := http.NewServeMux()
 
 	c := handlers.NewHandlerData(ds)
+	mux.Handle("/favicon.ico", http.HandlerFunc(c.FaviconHandler))
 	mux.Handle("/games/wordle/words", http.HandlerFunc(c.GetWords))
-	mux.Handle("/games/wordle", http.StripPrefix("/games/wordle", http.HandlerFunc(c.GetAssets)))
+	mux.Handle("/games/wordle/", http.StripPrefix("/games/wordle", http.HandlerFunc(c.GetAssets)))
 
 	// listen on all localhost
 	ip := "127.0.0.1"

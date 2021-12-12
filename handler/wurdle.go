@@ -64,20 +64,38 @@ func (hd *handlerData) GetWords(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// GetAssets
-func (hd *handlerData) GetAssets(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("GetAssets")
+func (hd *handlerData) getAppPath() string {
 	app, err := os.Executable()
 	if err != nil {
-		log.Printf("ERROR getting the executable path %v", err)
+		log.Fatalf("ERROR getting the executable path %v", err)
 	}
 	appPath, err := filepath.Abs(filepath.Dir(app))
-	fmt.Println(appPath)
+	// if the app's path cannot be determined the app cannot run
+	if err != nil {
+		log.Fatalf("ERROR getting the executable path %v", err)
+	}
+
+	return appPath
+}
+
+// GetAssets
+func (hd *handlerData) GetAssets(w http.ResponseWriter, r *http.Request) {
+	appPath := hd.getAppPath()
 	if strings.HasSuffix(r.URL.Path, ".js") {
 		w.Header().Set("Content-Type", "text/javascript")
-		http.ServeFile(w, r, appPath+"/assets/"+r.URL.Path)
+		http.ServeFile(w, r, appPath+"/assets/wordle/"+r.URL.Path)
+	} else if strings.HasSuffix(r.URL.Path, ".css") {
+		w.Header().Set("Content-Type", "text/css")
+		http.ServeFile(w, r, appPath+"/assets/wordle/"+r.URL.Path)
 	} else {
 		w.Header().Set("Content-Type", "text/html")
-		http.ServeFile(w, r, appPath+"/assets/index.html")
+		fmt.Println(appPath + "/assets/wordle/index.html")
+		http.ServeFile(w, r, appPath+"/assets/wordle/index.html")
 	}
+}
+
+// FaviconHandler -
+func (hd *handlerData) FaviconHandler(w http.ResponseWriter, r *http.Request) {
+	appPath := hd.getAppPath()
+	http.ServeFile(w, r, appPath+"/assets/favicon.ico")
 }

@@ -1,0 +1,35 @@
+.kb {
+	display: inline-block;
+	padding: 0.25em;
+	border:thin solid #66ff00;
+	font-size: 150%;
+}
+#game {
+	display: grid;
+	margin-left: auto;
+	margin-right: auto;
+	max-width:max-content;
+}
+.tiles {
+	position: relative;
+	top: 50%;
+	vertical-align: middle;
+	text-align:center;
+	transform: translateY(-50%);
+	display: inline-block;
+	border:thin solid #66ff00;
+	font-size: 3em;
+	width: 60px;
+	height: 75px;
+}
+#keyboard {
+	padding-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: max-content;
+}
+.row {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: max-content;
+}
