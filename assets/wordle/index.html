@@ -1,57 +1,17 @@
-<! DOCTYPE html>
-<html lang="en" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title>Balmy Text</title>
-		<script src="vue.js"></script>
-		<link rel="stylesheet" href="wordle.css">
-	</head>
-	<body>
-		<div id="main"v-on:keyup="keymonitor" tabindex="-1">
-		<div id="game">
-			<div v-for="row in rowCount" v-bind:id="'row'+row"
-				style="max-width: max-content;">
-				<div v-for="col in colCount" v-bind:id="'row'+row+'col'+col"
-				class="tiles"></div>
-			</div>
-		</div>
-		<div id="next"></div>
-		<div id="keyboard">
-			<div id="topRow" class="row">
-				<div v-on:click="kbclick('q')" id="kbq" class="kb" >q</div>
-				<div v-on:click="kbclick('w')" id="kbw" class="kb" >w</div>
-				<div v-on:click="kbclick('e')" id="kbe" class="kb" >e</div>
-				<div v-on:click="kbclick('r')" id="kbr" class="kb" >r</div>
-				<div v-on:click="kbclick('t')" id="kbt" class="kb" >t</div>
-				<div v-on:click="kbclick('y')" id="kby" class="kb" >y</div>
-				<div v-on:click="kbclick('u')" id="kbu" class="kb" >u</div>
-				<div v-on:click="kbclick('i')" id="kbi" class="kb" >i</div>
-				<div v-on:click="kbclick('o')" id="kbo" class="kb" >o</div>
-				<div v-on:click="kbclick('p')" id="kbp" class="kb" >p</div>
-			</div>
-			<div id="midRow" class="row">
-				<div v-on:click="kbclick('a')" id="kba" class="kb" >a</div>
-				<div v-on:click="kbclick('s')" id="kbs" class="kb" >s</div>
-				<div v-on:click="kbclick('d')" id="kbd" class="kb" >d</div>
-				<div v-on:click="kbclick('f')" id="kbf" class="kb" >f</div>
-				<div v-on:click="kbclick('g')" id="kbg" class="kb" >g</div>
-				<div v-on:click="kbclick('h')" id="kbh" class="kb" >h</div>
-				<div v-on:click="kbclick('j')" id="kbj" class="kb" >j</div>
-				<div v-on:click="kbclick('k')" id="kbk" class="kb" >k</div>
-				<div v-on:click="kbclick('l')" id="kbl" class="kb" >l</div>
-			</div>
-			<div id="botRow" class="row">
-				<div v-on:click="kbclick('delete')" class="kb" >Delete</div>
-				<div v-on:click="kbclick('z')" id="kbz" class="kb" >z</div>
-				<div v-on:click="kbclick('x')" id="kbx" class="kb" >x</div>
-				<div v-on:click="kbclick('c')" id="kbc" class="kb" >c</div>
-				<div v-on:click="kbclick('v')" id="kbv" class="kb" >v</div>
-				<div v-on:click="kbclick('b')" id="kbb" class="kb" >b</div>
-				<div v-on:click="kbclick('n')" id="kbn" class="kb" >n</div>
-				<div v-on:click="kbclick('m')" id="kbm" class="kb" >m</div>
-				<div v-on:click="kbclick('enter')" class="kb" >Enter</div>
-			</div>
-		</div></div>
-		<script src="wordle.js"></script>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+
+	<title>Wordle app</title>
+
+	<link rel='stylesheet' href='global.css'>
+	<link rel='stylesheet' href='build/bundle.css'>
+
+	<script defer src='build/bundle.js'></script>
+</head>
+
+<body>
+</body>
 </html>
