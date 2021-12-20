@@ -44,9 +44,9 @@ func main() {
 	mux := http.NewServeMux()
 
 	c := handlers.NewHandlerData(ds)
-	mux.Handle("/favicon.ico", http.HandlerFunc(c.FaviconHandler))
-	mux.Handle("/games/wordle/words", http.HandlerFunc(c.GetWords))
-	mux.Handle("/games/wordle/", http.StripPrefix("/games/wordle", http.HandlerFunc(c.GetAssets)))
+	mux.Handle("/favicon.ico", AllowCors(http.HandlerFunc(c.FaviconHandler)))
+	mux.Handle("/games/wordle/words", AllowCors(http.HandlerFunc(c.GetWords)))
+	mux.Handle("/games/wordle/", http.StripPrefix("/games/wordle", AllowCors(http.HandlerFunc(c.GetAssets))))
 
 	// listen on all localhost
 	ip := "127.0.0.1"
@@ -74,4 +74,14 @@ func main() {
 	if err := server.Shutdown(ctx); err != nil {
 		log.Fatalf("server shutdown returned error %v", err)
 	}
+}
+
+// AllowCors -
+// CORS middleware
+func AllowCors(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		next.ServeHTTP(w, req)
+	})
 }
